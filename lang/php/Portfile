@@ -1304,14 +1304,14 @@ subport ${php}-ldap {
 
 subport ${php}-mbstring {
     switch -- ${version} {
-        5.2.17              {revision 0}
-        5.3.29              {revision 0}
-        5.4.45              {revision 0}
-        5.5.38              {revision 0}
-        5.6.40              {revision 1}
-        7.0.33              {revision 0}
-        7.1.33              {revision 0}
-        7.2.34              {revision 0}
+        5.2.17              {revision 1}
+        5.3.29              {revision 1}
+        5.4.45              {revision 1}
+        5.5.38              {revision 1}
+        5.6.40              {revision 2}
+        7.0.33              {revision 1}
+        7.1.33              {revision 1}
+        7.2.34              {revision 1}
         7.3.33              {revision 0}
         7.4.30              {revision 0}
         8.0.22              {revision 0}
@@ -1334,6 +1334,10 @@ subport ${php}-mbstring {
 
     if {[vercmp ${branch} 5.6] == 0} {
         patchfiles-append   patch-${php}-ext-mbstring-implicit.diff
+    }
+    
+    if {[vercmp ${branch} 7.3] < 0} {
+    	patchfiles-append   patch-php__-mbregex.diff
     }
 }
 
